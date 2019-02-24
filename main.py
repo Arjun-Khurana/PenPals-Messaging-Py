@@ -2,10 +2,11 @@ from flask import Flask, render_template
 from flask_socketio import SocketIO
 import requests
 import json
+from flask_cors import CORS
 
 app = Flask(__name__)
 socketio = SocketIO(app)
-#CORS(app)
+CORS(app)
 
 @app.route('/', methods=['GET', 'POST'])
 def sessions():
@@ -28,6 +29,7 @@ def handle_my_custom_event(event, methods=['GET', 'POST']):
     headers = {'Content-Type': "application/json"}
     r = requests.post(URL, headers=headers, data=d)
     msgjson = r.json()
+    print(r.json())
     msgjson['user_name'] = event['user_name']
     msgjson['message'] = msgjson['translatedText']
     socketio.emit('shaggy', msgjson, callback=messageReceived)
