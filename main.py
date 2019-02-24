@@ -6,7 +6,7 @@ import json
 app = Flask(__name__)
 socketio = SocketIO(app)
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def sessions():
     return render_template('session.html')
 
