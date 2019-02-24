@@ -14,7 +14,7 @@ def messageReceived(methods=['GET', 'POST']):
     #save into database!
     print('message received')
 
-@socketio.on('my event')
+@socketio.on('scooby')
 def handle_my_custom_event(event, methods=['GET', 'POST']):
     print('received my event: ' + str(event))
     #call api
@@ -29,7 +29,7 @@ def handle_my_custom_event(event, methods=['GET', 'POST']):
     msgjson = r.json()
     msgjson['user_name'] = event['user_name']
     msgjson['message'] = msgjson['translatedText']
-    socketio.emit('my response', msgjson, callback=messageReceived)
+    socketio.emit('shaggy', msgjson, callback=messageReceived)
 
 if __name__ == '__main__':
     socketio.run(app, debug=True)

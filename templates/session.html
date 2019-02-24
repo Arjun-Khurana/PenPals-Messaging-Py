@@ -27,14 +27,14 @@
           e.preventDefault()
           let user_name = $( 'input.username' ).val()
           let user_input = $( 'input.message' ).val()
-          socket.emit( 'my event', {
+          socket.emit( 'scooby', {
             user_name : user_name,
             message : user_input
             
           } )
         } )
       } )
-      socket.on( 'my response', function( msg ) {
+      socket.on( 'shaggy', function( msg ) {
         console.log( msg )
         if( typeof msg.user_name !== 'undefined' ) {
           $( 'h3' ).remove()
