@@ -6,7 +6,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 socketio = SocketIO(app)
-CORS(app)
+#CORS(app)
 
 @app.route('/', methods=['GET', 'POST'])
 def sessions():
